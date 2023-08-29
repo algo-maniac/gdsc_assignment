@@ -1,113 +1,137 @@
-import Image from 'next/image'
+"use client";
 
-export default function Home() {
+import React, { useEffect, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import styled from "styled-components";
+import axios from "axios";
+
+export default function Navbar() {
+  const [content, setContent] = useState([]);
+  const [meta, setMeta] = useState(0);
+  const [apistatus, setApistatus] = useState(false);
+
+  const getResponse = async () => {
+    const response = await axios.get("https://gdscdev.vercel.app/api");
+    console.log(response.data.content);
+    setContent(response.data.content.data);
+    setMeta(response.data.content.meta);
+    setApistatus(true);
+    console.log(content);
+  };
+  useEffect(() => {
+    getResponse();
+  }, []);
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.js</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800 hover:dark:bg-opacity-30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore the Next.js 13 playground.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+    <div>
+      <Heading>GDSC ASSIGNMENT</Heading>
+      <ContentList>
+        {content.map((val, index) => {
+          return (
+            <EachItem key={index}>
+              <BannerImage style={{ borderRadius: "10px" }}>
+                <img
+                  src={val.banner_image}
+                  style={{
+                    height: "100%",
+                    width: "100%",
+                    objectFit: "cover",
+                    borderRadius: "10px 10px 0px 0px",
+                  }}
+                />
+              </BannerImage>
+              <Title>Title : {val.title}</Title>
+              <Description>Description : {val.description}</Description>
+              <DateAndTime>Date and Time : {val.date_time}</DateAndTime>
+              <VenueCity>Venue City : {val.venue_city}</VenueCity>
+              <VenueCountry>Venue Country : {val.venue_country}</VenueCountry>
+              <VenueName>Venue Name : {val.venue_name}</VenueName>
+              <OrganiserIcon>
+                <img
+                  src={val.organiser_icon}
+                  style={{
+                    height: "20%",
+                    width: "20%",
+                    objectFit: "cover",
+                    // marginLeft: "40%",
+                  }}
+                />
+              </OrganiserIcon>
+              <OrganiserName>
+                Organiser Name : {val.organiser_name}
+              </OrganiserName>
+            </EachItem>
+          );
+        })}
+      </ContentList>
+    </div>
+  );
 }
+
+const Heading = styled.div`
+  border: 2px solid white;
+  width: 50%;
+  height: 30px;
+  color: white;
+  text-align: center;
+  padding-top: 5px;
+  margin-left: 25%;
+  border-radius: 10px;
+  box-shadow: 1px 3px 13px -4px rgba(255, 255, 255, 1);
+`;
+
+const ContentList = styled.div`
+  //   border: 2px solid white;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+`;
+
+const EachItem = styled.div`
+  color: white;
+  border: 2px solid white;
+  // padding: 5px;
+  margin: 20px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 10px;
+  background-color: #171737;
+  box-shadow: 1px 3px 13px -4px rgba(255, 255, 255, 1);
+`;
+
+const BannerImage = styled.div``;
+
+const Title = styled.div`
+  margin: 10px 10px;
+`;
+
+const Description = styled.div`
+  margin: 10px 10px;
+`;
+
+const DateAndTime = styled.div`
+  margin: 10px 10px;
+`;
+
+const VenueCity = styled.div`
+  margin: 10px 10px;
+`;
+
+const VenueCountry = styled.div`
+  margin: 10px 10px;
+`;
+
+const VenueName = styled.div`
+  margin: 10px 10px;
+`;
+
+const OrganiserIcon = styled.div`
+  text-align: center;
+`;
+
+const OrganiserName = styled.div`
+  margin: 10px;
+  text-align: center;
+`;
