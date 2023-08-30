@@ -73,22 +73,37 @@ export default function Navbar() {
     });
   }, [content]);
   return (
-    <div>
+    <div className="font-serif tracking-wider">
       <div style={{ display: "flex" }} className="mt-5">
-        <Heading>GDSC ASSIGNMENT</Heading>
+        <Heading
+          style={{
+            backgroundColor: "#0093E9",
+            backgroundImage:
+              "linear-gradient(160deg, #0093E9 0%, #80D0C7 100%)",
+            color: "black",
+          }}
+        >
+          <strong>GDSC ASSIGNMENT</strong>
+        </Heading>
 
         <div className="mb-3 w-[20%] inline-block ml-5">
           <div className="relative mb-4 flex w-full flex-wrap items-stretch text-white">
             <input
               type="search"
               className="relative m-0 -mr-0.5 block w-[1px] min-w-0 flex-auto rounded-[10px] border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-white focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-white dark:placeholder:text-neutral-200 dark:focus:border-primary"
-              placeholder="Search"
+              placeholder="Search by ID"
               aria-label="Search"
               aria-describedby="button-addon1"
               onChange={(e) => {
                 setSearch(e.target.value);
               }}
               value={search}
+              style={{
+                backgroundColor: "#0093E9",
+                backgroundImage:
+                  "linear-gradient(160deg, #0093E9 0%, #80D0C7 100%)",
+                color: "black",
+              }}
             />
             <button
               className="relative z-[2] flex items-center rounded-r bg-primary px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-xl transition duration-150 ease-in-out hover:bg-primary-700 hover:shadow-lg focus:bg-primary-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-primary-800 active:shadow-lg"
@@ -97,6 +112,14 @@ export default function Navbar() {
               data-te-ripple-init
               data-te-ripple-color="light"
               onClick={searchHandler}
+              style={{
+                backgroundColor: "#0093E9",
+                backgroundImage:
+                  "linear-gradient(160deg, #0093E9 0%, #80D0C7 100%)",
+                color: "black",
+                borderRadius: "10px",
+                marginLeft: "5px",
+              }}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -118,7 +141,16 @@ export default function Navbar() {
       <ContentList>
         {content.map((val, index) => {
           return (
-            <EachItem key={index} id={val.title}>
+            <EachItem
+              key={index}
+              id={val.title}
+              style={{
+                backgroundColor: "#0093E9",
+                backgroundImage:
+                  "linear-gradient(160deg, #0093E9 0%, #80D0C7 100%)",
+                color: "black",
+              }}
+            >
               <BannerImage style={{ borderRadius: "10px" }}>
                 <img
                   src={val.banner_image}
@@ -130,27 +162,68 @@ export default function Navbar() {
                   }}
                 />
               </BannerImage>
-              <Id>Id : {val.id}</Id>
-              <Title>Title : {val.title}</Title>
-              <Description>Description : {val.description}</Description>
-              <DateAndTime>Date and Time : {val.date_time}</DateAndTime>
-              <VenueCity>Venue City : {val.venue_city}</VenueCity>
-              <VenueCountry>Venue Country : {val.venue_country}</VenueCountry>
-              <VenueName>Venue Name : {val.venue_name}</VenueName>
-              <OrganiserIcon>
-                <img
-                  src={val.organiser_icon}
-                  style={{
-                    height: "20%",
-                    width: "20%",
-                    objectFit: "cover",
-                    // marginLeft: "40%",
-                  }}
-                />
-              </OrganiserIcon>
-              <OrganiserName>
-                Organiser Name : {val.organiser_name}
-              </OrganiserName>
+              <Id>
+                <strong>
+                  <font size="4">Id</font>
+                </strong>{" "}
+                : {val.id}
+              </Id>
+              <Title>
+                <strong>
+                  <font size="4">Title</font>
+                </strong>{" "}
+                : {val.title}
+              </Title>
+              <Description>
+                <strong>
+                  <font size="4">Description </font>
+                </strong>
+                : {val.description}
+              </Description>
+              <DateAndTime>
+                <strong>
+                  <font size="4">Date and Time </font>
+                </strong>{" "}
+                : {val.date_time}
+              </DateAndTime>
+              <VenueCity>
+                <strong>
+                  <font size="4">Venue City </font>
+                </strong>{" "}
+                : {val.venue_city}
+              </VenueCity>
+              <VenueCountry>
+                <strong>
+                  <font size="4">Venue Country </font>
+                </strong>{" "}
+                : {val.venue_country}
+              </VenueCountry>
+              <VenueName>
+                {" "}
+                <strong>
+                  <font size="4">Venue Name </font>
+                </strong>{" "}
+                : {val.venue_name}
+              </VenueName>
+              <OrganiserInfo>
+                <OrganiserIcon>
+                  <img
+                    src={val.organiser_icon}
+                    style={{
+                      height: "100px",
+                      width: "100px",
+                      objectFit: "cover",
+                      // marginLeft: "40%",
+                    }}
+                  />
+                </OrganiserIcon>
+                <OrganiserName>
+                  <strong>
+                    <font size="4">Organiser Name</font>
+                  </strong>{" "}
+                  : {val.organiser_name}
+                </OrganiserName>
+              </OrganiserInfo>
             </EachItem>
           );
         })}
@@ -164,6 +237,7 @@ const Heading = styled.div`
   width: 50%;
   height: 40px;
   color: white;
+  background-color: #171737;
   text-align: center;
   padding-top: 5px;
   margin-left: 25%;
@@ -193,12 +267,12 @@ const EachItem = styled.div`
   margin: 20px 10px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   border-radius: 10px;
   background-color: #171737;
   box-shadow: 1px 3px 13px -4px rgba(255, 255, 255, 1);
-  height: 50%;
-  width: 30%;
+  // height: 830px;
+  // width: 30%;
   @media screen and (min-width: 320px) {
     width: 90%;
   }
@@ -241,9 +315,18 @@ const OrganiserIcon = styled.div`
   // text-align: center;
   display: flex;
   justify-content: center;
+  height: 30%;
+  width: 100%;
 `;
 
 const OrganiserName = styled.div`
   margin: 10px;
+  margin-top: 30px;
   text-align: center;
+`;
+
+const OrganiserInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 `;
