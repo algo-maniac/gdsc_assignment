@@ -1,6 +1,7 @@
 This is NextJS based application
 
 The project creates a get request to https://gdscdev.vercel.app/api, fetches the content and displays in a presentable manner. The site is made responsive for all kinds of devices.
+There is also a search feature which helps you to search throughout the document and also a pie chart to visualize the entire document
 
 Live Link : https://gdsc-assignment-coral.vercel.app/
 
